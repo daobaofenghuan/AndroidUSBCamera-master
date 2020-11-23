@@ -1,5 +1,7 @@
 package com.jiangdg.usbcamera.view;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.hardware.usb.UsbDevice;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +17,8 @@ import android.view.Surface;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -26,6 +30,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.jiangdg.usbcamera.UVCCameraHelper;
+import com.jiangdg.usbcamera.activity.adapter.Shop_Part3_Adapter;
+import com.jiangdg.usbcamera.activity.adapter.Shop_Part5_Adapter;
+import com.jiangdg.usbcamera.activity.base.MyBaseActivity;
 import com.jiangdg.usbcamera.application.MyApplication;
 import com.jiangdg.usbcamera.utils.FileUtils;
 import com.serenegiant.usb.CameraDialog;
@@ -39,6 +46,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -48,7 +58,7 @@ import butterknife.ButterKnife;
  * Created by jiangdongguo on 2017/9/30.
  */
 
-public class USBCameraActivity extends AppCompatActivity implements CameraDialog.CameraDialogParent, CameraViewInterface.Callback {
+public class USBCameraActivity extends MyBaseActivity implements CameraDialog.CameraDialogParent, CameraViewInterface.Callback {
     private static final String TAG = "Debug";
     @BindView(R.id.camera_view)
     public View mTextureView;
@@ -67,6 +77,17 @@ public class USBCameraActivity extends AppCompatActivity implements CameraDialog
 
     private boolean isRequest;
     private boolean isPreview;
+
+    RecyclerView recyclerView;
+    Shop_Part3_Adapter part3_adapter;
+    Shop_Part5_Adapter part5_adapter;
+    LinearLayout button1;
+    LinearLayout button2;
+//    LinearLayout button3;
+    LinearLayout defaultly;
+    ImageView banner;
+
+
 
     private UVCCameraHelper.OnMyDevConnectListener listener = new UVCCameraHelper.OnMyDevConnectListener() {
 
@@ -126,26 +147,46 @@ public class USBCameraActivity extends AppCompatActivity implements CameraDialog
         }
     };
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_usbcamera);
         ButterKnife.bind(this);
         initView();
+
 
         // step.1 initialize UVCCameraHelper
         mUVCCameraView = (CameraViewInterface) mTextureView;
         mUVCCameraView.setCallback(this);
         mCameraHelper = UVCCameraHelper.getInstance();
         mCameraHelper.setDefaultFrameFormat(UVCCameraHelper.FRAME_FORMAT_MJPEG);
-        mCameraHelper.initUSBMonitor(this, mUVCCameraView, listener);
+//        mCameraHelper.setDefaultFrameFormat(UVCCameraHelper.FRAME_FORMAT_YUYV);
+        mCameraHelper.initUSBMonitor(USBCameraActivity.this, mUVCCameraView, listener);
 
         mCameraHelper.setOnPreviewFrameListener(new AbstractUVCCameraHandler.OnPreViewResultListener() {
             @Override
             public void onPreviewResult(byte[] nv21Yuv) {
+
                 Log.d(TAG, "onPreviewResult: "+nv21Yuv.length);
             }
         });
+        initView2();
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        },1000);
+
+        super.onResume();
     }
 
     private void initView() {
@@ -402,5 +443,124 @@ public class USBCameraActivity extends AppCompatActivity implements CameraDialog
             mCameraHelper.stopPreview();
             isPreview = false;
         }
+    }
+
+    private void initView2(){
+        button1=findViewById(R.id.ordernubly);
+        button2=findViewById(R.id.id_moneryly);
+        defaultly=findViewById(R.id.id_rightly1);
+        recyclerView=findViewById(R.id.recyclerview);
+        banner=findViewById(R.id.banner);
+        button1=findViewById(R.id.ordernubly);
+        button2=findViewById(R.id.id_moneryly);
+        defaultly=findViewById(R.id.id_rightly1);
+        recyclerView=findViewById(R.id.recyclerview);
+        banner=findViewById(R.id.banner);
+
+        part3_adapter=new Shop_Part3_Adapter(this,null);
+        part5_adapter=new Shop_Part5_Adapter(this,null);
+        recyclerView.setLayoutManager(new GridLayoutManager(this,1, LinearLayoutManager.VERTICAL,false));
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                defaultly.setVisibility(View.INVISIBLE);
+                recyclerView.setAdapter(part3_adapter );
+
+                takepic();
+
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                defaultly.setVisibility(View.INVISIBLE);
+                recyclerView.setAdapter(part5_adapter );
+                takerecord();
+
+
+            }
+        });
+        banner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+    }
+
+    private void takepic(){
+        if (mCameraHelper == null || !mCameraHelper.isCameraOpened()) {
+            showShortMsg("sorry,camera open failed");
+            return ;
+        }
+        String picPath = UVCCameraHelper.ROOT_PATH + MyApplication.DIRECTORY_NAME +"/images/"
+                + System.currentTimeMillis() + UVCCameraHelper.SUFFIX_JPEG;
+
+        mCameraHelper.capturePicture(picPath, new AbstractUVCCameraHandler.OnCaptureListener() {
+            @Override
+            public void onCaptureResult(String path) {
+                if(TextUtils.isEmpty(path)) {
+                    return;
+                }
+                new Handler(getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(USBCameraActivity.this, "save path:"+path, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
+    }
+
+    private void takerecord(){     if (mCameraHelper == null || !mCameraHelper.isCameraOpened()) {
+        showShortMsg("sorry,camera open failed");
+        return ;
+    }
+        if (!mCameraHelper.isPushing()) {
+            String videoPath = UVCCameraHelper.ROOT_PATH + MyApplication.DIRECTORY_NAME +"/videos/" + System.currentTimeMillis()
+                    + UVCCameraHelper.SUFFIX_MP4;
+
+//                    FileUtils.createfile(FileUtils.ROOT_PATH + "test666.h264");
+            // if you want to record,please create RecordParams like this
+            RecordParams params = new RecordParams();
+            params.setRecordPath(videoPath);
+            params.setRecordDuration(0);                        // auto divide saved,default 0 means not divided
+            params.setVoiceClose(mSwitchVoice.isChecked());    // is close voice
+
+            params.setSupportOverlay(true); // overlay only support armeabi-v7a & arm64-v8a
+            mCameraHelper.startPusher(params, new AbstractUVCCameraHandler.OnEncodeResultListener() {
+                @Override
+                public void onEncodeResult(byte[] data, int offset, int length, long timestamp, int type) {
+                    // type = 1,h264 video stream
+                    if (type == 1) {
+                        FileUtils.putFileStream(data, offset, length);
+                    }
+                    // type = 0,aac audio stream
+                    if(type == 0) {
+
+                    }
+                }
+
+                @Override
+                public void onRecordResult(String videoPath) {
+                    if(TextUtils.isEmpty(videoPath)) {
+                        return;
+                    }
+                    new Handler(getMainLooper()).post(() -> Toast.makeText(USBCameraActivity.this, "save videoPath:"+videoPath, Toast.LENGTH_SHORT).show());
+                }
+            });
+            // if you only want to push stream,please call like this
+            // mCameraHelper.startPusher(listener);
+            showShortMsg("start record...");
+            mSwitchVoice.setEnabled(false);
+        } else {
+            FileUtils.releaseFile();
+            mCameraHelper.stopPusher();
+            showShortMsg("stop record...");
+            mSwitchVoice.setEnabled(true);
+        }
+
     }
 }

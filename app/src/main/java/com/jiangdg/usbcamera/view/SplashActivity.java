@@ -1,7 +1,9 @@
 package com.jiangdg.usbcamera.view;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.jiangdg.usbcamera.R;
+import com.jiangdg.usbcamera.activity.base.MyBaseActivity;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,7 +33,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by jiangdongguo on 2019/6/27.
  */
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends MyBaseActivity {
     private static final String[] REQUIRED_PERMISSION_LIST = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.RECORD_AUDIO,
@@ -38,10 +41,12 @@ public class SplashActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 1;
     private List<String> mMissPermissions = new ArrayList<>();
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_splash);
 
         if (isVersionM()) {

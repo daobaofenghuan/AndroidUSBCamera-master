@@ -2,7 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+<LinearLayout
+    android:visibility="gone"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <TextView
         android:layout_width="410dp"
         android:layout_height="0dp"
@@ -35,4 +39,13 @@
         android:gravity="bottom|center_horizontal"
         android:paddingBottom="20dp"
         android:layout_weight="1"/>
+</LinearLayout>
+    <FrameLayout
+        android:background="@drawable/bg_welcome"
+        android:id="@+id/_contant"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
 </LinearLayout>

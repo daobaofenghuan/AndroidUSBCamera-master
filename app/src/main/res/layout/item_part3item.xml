@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginBottom="@dimen/param_6.5dp"
+        android:layout_marginTop="@dimen/param_6.5dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/jianbian3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_marginBottom="@dimen/param_6.5dp"
+            android:layout_marginTop="@dimen/param_6.5dp"
+            android:id="@+id/imgly"
+            android:layout_marginLeft="@dimen/param_6dp"
+            android:background="@drawable/round_white_2dp"
+            android:layout_width="@dimen/param_38dp"
+            android:layout_height="@dimen/param_50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+
+                android:layout_margin="@dimen/param_2dp"
+                android:src="@drawable/icon_test_goods"
+                android:id="@+id/shop_img"
+                android:layout_width="@dimen/param_38dp"
+                android:layout_height="@dimen/param_50dp"
+                android:layout_centerInParent="true" />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/goodsname"
+            style="@style/text_basewhite13_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/param_8dp"
+            android:ellipsize="end"
+            android:maxEms="10"
+            android:maxLength="45"
+            android:text="53° 衡昌烧坊酒 20ssss20版 500mL 53°"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/imgly"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/param_10dp"
+            android:gravity="right"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toRightOf="@+id/goodsname"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+
+                style="@style/text_basewhite7_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="市场价 ￥1599" />
+
+            <TextView
+                style="@style/text_basewhite7_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/param_0.5dp"
+                android:text="零售价 ￥999" />
+
+            <TextView
+                style="@style/text_basewhite4_style"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/param_8dp"
+                android:text="*此价格仅供参考" />
+
+            <TextView
+                style="@style/text_basewhite7_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/param_5dp"
+                android:text="数量 x1" />
+        </LinearLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

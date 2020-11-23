@@ -7,5 +7,72 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="myAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
 
+        <!--        <item name="android:windowIsTranslucent">true</item>-->
+        <!--        <item name="windowNoTitle">true</item>-->
+        <!--        <item name="android:windowBackground">@drawable/img_default</item>-->
+    </style>
+
+
+    <style name="text_baseblack16_style">
+        <item name="android:textColor">#0C0C0C</item>
+        <item name="android:textSize">@dimen/param_16dp</item>
+    </style>
+
+    <style name="text_basebule9_style">
+        <item name="android:textColor">#1E6FFF</item>
+        <item name="android:textSize">@dimen/param_12dp</item>
+    </style>
+    <style name="text_basebule5_style">
+        <item name="android:textColor">#1E6FFF</item>
+        <item name="android:textSize">@dimen/param_8dp</item>
+    </style>
+    <style name="text_basebule15_style">
+        <item name="android:textColor">#1E6FFF</item>
+        <item name="android:textSize">
+            @dimen/param_24dp
+        </item>
+    </style>
+    <style name="text_baseroundwhite10_style">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/round_blue_5dp</item>
+        <item name="android:paddingLeft">@dimen/param_3dp</item>
+        <item name="android:paddingRight">@dimen/param_3dp</item>
+
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">@dimen/param_10dp</item>
+    </style>
+    <style name="text_basewhite9_style">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/param_11dp</item>
+    </style>
+    <style name="text_basewhite10_style">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/param_10dp</item>
+    </style>
+    <style name="text_basewhite4_style">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/param_4dp</item>
+    </style>
+    <style name="text_basewhite7_style">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/param_7dp</item>
+    </style>
+    <style name="text_basewhite13_style">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/param_13dp</item>
+    </style>
+    <style name="text_basewhite18_style">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/param_18dp</item>
+    </style>
+    <style name="text_basebule13_style">
+        <item name="android:textColor">#1E6FFF</item>
+        <item name="android:textSize">@dimen/param_13dp</item>
+    </style>
 </resources>

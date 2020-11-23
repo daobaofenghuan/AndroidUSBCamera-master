@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginBottom="@dimen/param_6.5dp"
+        android:layout_marginTop="@dimen/param_6.5dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/jianbian3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_marginBottom="@dimen/param_6.5dp"
+            android:layout_marginTop="@dimen/param_6.5dp"
+            android:id="@+id/imgly"
+            android:layout_marginLeft="@dimen/param_6dp"
+            android:background="@drawable/round_white_2dp"
+            android:layout_width="@dimen/param_22dp"
+            android:layout_height="@dimen/param_33dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+
+                android:layout_margin="@dimen/param_2dp"
+                android:src="@drawable/icon_test_goods"
+                android:id="@+id/shop_img"
+                android:layout_width="@dimen/param_38dp"
+                android:layout_height="@dimen/param_50dp"
+                android:layout_centerInParent="true" />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/goodsname"
+            style="@style/text_basewhite7_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/param_8dp"
+            android:ellipsize="end"
+            android:maxEms="10"
+            android:maxLength="45"
+            android:text="53° 衡昌烧坊酒 20ssss20版 500mL 53°"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/imgly"
+            app:layout_constraintTop_toTopOf="parent" />
+          <RelativeLayout
+              app:layout_constraintRight_toRightOf="@+id/shuliangly"
+            android:id="@+id/lingshouly"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintLeft_toRightOf="@+id/goodsname"
+
+              android:layout_width="wrap_content"
+              android:layout_height="0dp">
+
+              <TextView
+                  android:layout_toRightOf="@+id/id_text1"
+                  android:id="@+id/price"
+                  android:paddingTop="@dimen/param_6dp"
+                  android:layout_centerVertical="true"
+                  style="@style/text_basewhite10_style"
+                  android:text="￥ 999"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+              <TextView
+                  android:layout_alignBottom="@+id/price"
+                  android:id="@+id/id_text1"
+                  style="@style/text_basewhite7_style"
+                  android:text="零售价"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+
+
+          </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_marginRight="@dimen/param_8dp"
+             android:id="@+id/shuliangly"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
+            android:layout_width="wrap_content"
+            android:layout_height="0dp">
+
+            <TextView
+                android:layout_toRightOf="@+id/id_text2"
+                android:id="@+id/nuber"
+                android:paddingTop="@dimen/param_6dp"
+                android:layout_centerVertical="true"
+                style="@style/text_basewhite10_style"
+                android:text=" X1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_alignBottom="@+id/nuber"
+                android:id="@+id/id_text2"
+                style="@style/text_basewhite7_style"
+                android:text="数量："
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,91 +8,429 @@
     tools:context=".view.USBCameraActivity"
     tools:ignore="MergeRootFrame">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <RelativeLayout
+android:visibility="invisible"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:navigationIcon="@null"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:navigationIcon="@null"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar">
+        <FrameLayout
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar">
 
-        <com.serenegiant.usb.widget.UVCCameraTextureView
-            android:id="@+id/camera_view"
+            <!--        <com.serenegiant.usb.widget.UVCCameraTextureView-->
+            <!--            android:id="@+id/camera_view"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_gravity="center"/>-->
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/llayout_contrast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp"
+                android:text="对比度(contrast)"
+                android:textColor="@color/colorWhite" />
+
+            <SeekBar
+                android:id="@+id/seekbar_contrast"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llayout_brightness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/llayout_contrast"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp"
+                android:text="亮度(brightness)"
+                android:textColor="@color/colorWhite" />
+
+            <SeekBar
+                android:id="@+id/seekbar_brightness"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2" />
+        </LinearLayout>
+
+        <Switch
+
+            android:id="@+id/switch_rec_voice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/llayout_brightness"
+            android:layout_alignStart="@+id/llayout_brightness"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="27dp"
+            android:checked="false"
+            android:text="closeVoice"
+            android:textColor="@color/colorWhite" />
+    </RelativeLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/param_8dp"
+            android:layout_marginTop="@dimen/param_8dp"
+
+            android:background="@color/white"
+
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5">
+
+            <ImageView
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_img001" />
+
+
+        </LinearLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_leftly"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/param_8dp"
+            android:layout_marginTop="@dimen/param_8dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintWidth_percent="0.5">
+
+            <RelativeLayout
+
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/param_8dp"
+                android:background="@drawable/jianbian"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/id_aihely2">
+
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/param_5dp"
+                    android:layout_marginTop="@dimen/param_12dp"
+                    android:orientation="horizontal">
+                    <TextView
+
+                        style="@style/text_basewhite9_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/param_5dp"
+                        android:text="五粮液友情推荐" />
+                    <ImageView
+                        android:layout_width="@dimen/param_12dp"
+                        android:layout_height="@dimen/param_12dp"
+                        android:layout_marginRight="@dimen/param_7dp"
+                        android:src="@mipmap/ic_launcher" />
+
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/id_texttittle"
+                    style="@style/text_basewhite9_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/param_5dp"
+                    android:layout_marginTop="@dimen/param_11dp"
+                    android:text="每日酒语" />
+
+                <TextView
+                    style="@style/text_basewhite9_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/id_texttittle"
+                    android:layout_marginLeft="@dimen/param_5dp"
+                    android:layout_marginRight="@dimen/param_8dp"
+                    android:layout_marginTop="@dimen/param_8dp"
+                    android:text="人在江湖走，不能离了酒；人在江湖飘，那能不喝高。" />
+
+
+            </RelativeLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/id_aihely2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.333"
+
+                app:layout_constraintTop_toBottomOf="@+id/id_aihely1">
+
+                <LinearLayout
+                    android:id="@+id/id_weekly1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/param_12dp"
+                    android:layout_marginLeft="@dimen/param_8dp"
+                    android:layout_marginTop="@dimen/param_8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="@dimen/param_12dp"
+                        android:layout_height="@dimen/param_12dp"
+                        android:src="@drawable/icon_week" />
+
+                    <TextView
+                        style="@style/text_baseroundwhite10_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/param_13dp"
+                        android:layout_marginLeft="@dimen/param_2dp"
+                        android:text="WEEK" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/id_dately1"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="@dimen/param_12dp"
+                    android:layout_marginTop="@dimen/param_8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="@dimen/param_12dp"
+                        android:layout_height="@dimen/param_12dp"
+                        android:src="@drawable/icon_date" />
+
+                    <TextView
+                        style="@style/text_baseroundwhite10_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/param_13dp"
+                        android:layout_marginLeft="@dimen/param_2dp"
+                        android:text="CALENDAR" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/id_wendu1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/param_12dp"
+                    android:layout_marginRight="@dimen/param_8dp"
+                    android:layout_marginTop="@dimen/param_8dp"
+
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="@dimen/param_12dp"
+                        android:layout_height="@dimen/param_12dp"
+                        android:src="@drawable/icon_wendu" />
+
+                    <TextView
+                        style="@style/text_baseroundwhite10_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/param_13dp"
+                        android:layout_marginLeft="@dimen/param_2dp"
+                        android:text="CELSIUS" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/text_basebule13_style"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:text="星期一"
+                    android:textSize="@dimen/param_12dp"
+                    app:layout_constraintLeft_toLeftOf="@+id/id_weekly1"
+                    app:layout_constraintTop_toBottomOf="@+id/id_weekly1" />
+
+                <TextView
+                    style="@style/text_basebule13_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2020-11-10"
+                    android:textSize="@dimen/param_12dp"
+                    app:layout_constraintLeft_toLeftOf="@+id/id_dately1"
+                    app:layout_constraintRight_toRightOf="@+id/id_dately1"
+                    app:layout_constraintTop_toBottomOf="@+id/id_dately1" />
+
+                <TextView
+                    style="@style/text_basebule13_style"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="28℃"
+                    android:textSize="@dimen/param_12dp"
+                    app:layout_constraintRight_toRightOf="@+id/id_wendu1"
+                    app:layout_constraintTop_toBottomOf="@+id/id_wendu1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+                android:id="@+id/id_aihely1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+                app:layout_constraintHeight_percent="0.333"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/id_aiheimg"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/param_8dp"
+                    android:src="@drawable/icon_brand"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/param_8dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/id_aiheimg"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        style="@style/text_basebule9_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/param_2dp"
+                        android:text="智慧零售酒柜" />
+
+                    <include layout="@layout/common_line1dp" />
+                    <TextView
+                        style="@style/text_basebule5_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/param_2dp"
+                        android:text=" DRINK THE FEELING" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/text_basebule15_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/param_6dp"
+                    android:layout_marginRight="@dimen/param_8dp"
+                    android:text="今天/TODAY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/param_1dp"
+                    android:layout_marginLeft="@dimen/param_10dp"
+                    android:layout_marginRight="@dimen/param_10dp"
+                    android:background="#1E6FFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginBottom="@dimen/param_8dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/param_8dp"
+            android:layout_marginRight="@dimen/param_8dp"
+            android:layout_marginTop="@dimen/param_8dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/main_leftly"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+
+                layout="@layout/activity_main_right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.serenegiant.usb.widget.UVCCameraTextureView
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/param_80dp"
+            android:id="@+id/camera_view"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="center"/>
-    </FrameLayout>
 
-    <LinearLayout
-        android:id="@+id/llayout_contrast"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="horizontal">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingBottom="7dp"
-            android:paddingTop="7dp"
-            android:text="对比度(contrast)"
-            android:textColor="@color/colorWhite" />
-
-        <SeekBar
-            android:id="@+id/seekbar_contrast"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llayout_brightness"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/llayout_contrast"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingBottom="7dp"
-            android:paddingTop="7dp"
-            android:text="亮度(brightness)"
-            android:textColor="@color/colorWhite" />
-
-        <SeekBar
-            android:id="@+id/seekbar_brightness"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2" />
-    </LinearLayout>
-
-    <Switch
-        android:id="@+id/switch_rec_voice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/llayout_brightness"
-        android:layout_alignStart="@+id/llayout_brightness"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginLeft="13dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="27dp"
-        android:checked="false"
-        android:text="closeVoice"
-        android:textColor="@color/colorWhite" />
 
 </RelativeLayout>
