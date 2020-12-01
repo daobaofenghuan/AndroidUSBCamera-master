@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion rootProject.ext.versionCompiler
     defaultConfig {
-        applicationId "com.jiangdg.usbcamera"
+        applicationId "com.hqhn.opendoor.adver"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.versionTarget
         versionCode rootProject.ext.versionCode
@@ -36,4 +36,10 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    compile 'com.aliyun.dpa:oss-android-sdk:2.4.5'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.squareup.okio:okio:1.9.0'
+//    compile'com.aliyun.[dpa:oss-android-sdk:+](http://dpaoss-android-sdk+/)'//这里用sdk+ 是为了随时跟随oss的版本更新，oss也会随时修复bug。
+//
+//    compile'com.squareup.[okhttp3:okhttp:3.4.1](http://okhttp3okhttp:3.4.1/)'//
 }

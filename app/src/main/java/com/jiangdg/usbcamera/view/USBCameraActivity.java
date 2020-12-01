@@ -3,6 +3,7 @@ package com.jiangdg.usbcamera.view;
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -41,10 +42,12 @@ import com.serenegiant.usb.USBMonitor;
 import com.serenegiant.usb.common.AbstractUVCCameraHandler;
 import com.serenegiant.usb.encoder.RecordParams;
 import com.serenegiant.usb.widget.CameraViewInterface;
+import com.serenegiant.usb.widget.UVCCameraTextureView;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -61,7 +64,7 @@ import butterknife.ButterKnife;
 public class USBCameraActivity extends MyBaseActivity implements CameraDialog.CameraDialogParent, CameraViewInterface.Callback {
     private static final String TAG = "Debug";
     @BindView(R.id.camera_view)
-    public View mTextureView;
+    public UVCCameraTextureView mTextureView;
     @BindView(R.id.toolbar)
     public Toolbar mToolbar;
     @BindView(R.id.seekbar_brightness)
@@ -151,17 +154,18 @@ public class USBCameraActivity extends MyBaseActivity implements CameraDialog.Ca
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_usbcamera);
         ButterKnife.bind(this);
         initView();
 
 
         // step.1 initialize UVCCameraHelper
-        mUVCCameraView = (CameraViewInterface) mTextureView;
-        mUVCCameraView.setCallback(this);
         mCameraHelper = UVCCameraHelper.getInstance();
         mCameraHelper.setDefaultFrameFormat(UVCCameraHelper.FRAME_FORMAT_MJPEG);
+        mUVCCameraView = (CameraViewInterface) mTextureView;
+        mUVCCameraView.setCallback(this);
+
 //        mCameraHelper.setDefaultFrameFormat(UVCCameraHelper.FRAME_FORMAT_YUYV);
         mCameraHelper.initUSBMonitor(USBCameraActivity.this, mUVCCameraView, listener);
 
@@ -361,8 +365,9 @@ public class USBCameraActivity extends MyBaseActivity implements CameraDialog.Ca
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                if (mCameraHelper == null || !mCameraHelper.isCameraOpened())
+                if (mCameraHelper == null || !mCameraHelper.isCameraOpened()) {
                     return;
+                }
                 final String resolution = (String) adapterView.getItemAtPosition(position);
                 String[] tmp = resolution.split("x");
                 if (tmp != null && tmp.length >= 2) {
@@ -494,6 +499,7 @@ public class USBCameraActivity extends MyBaseActivity implements CameraDialog.Ca
             showShortMsg("sorry,camera open failed");
             return ;
         }
+
         String picPath = UVCCameraHelper.ROOT_PATH + MyApplication.DIRECTORY_NAME +"/images/"
                 + System.currentTimeMillis() + UVCCameraHelper.SUFFIX_JPEG;
 
@@ -522,13 +528,19 @@ public class USBCameraActivity extends MyBaseActivity implements CameraDialog.Ca
             String videoPath = UVCCameraHelper.ROOT_PATH + MyApplication.DIRECTORY_NAME +"/videos/" + System.currentTimeMillis()
                     + UVCCameraHelper.SUFFIX_MP4;
 
+            FileUtils.createfile(FileUtils.ROOT_PATH+"test666.h264");
 //                    FileUtils.createfile(FileUtils.ROOT_PATH + "test666.h264");
             // if you want to record,please create RecordParams like this
+            String savepath=UVCCameraHelper.ROOT_PATH + MyApplication.DIRECTORY_NAME +"/videos/";
+            File file = new File(savepath);
+            if(! Objects.requireNonNull(file.getParentFile()).exists()) {
+                file.getParentFile().mkdirs();
+            }
             RecordParams params = new RecordParams();
             params.setRecordPath(videoPath);
             params.setRecordDuration(0);                        // auto divide saved,default 0 means not divided
-            params.setVoiceClose(mSwitchVoice.isChecked());    // is close voice
-
+//            params.setVoiceClose(mSwitchVoice.isChecked());    // is close voice
+            params.setVoiceClose(true);
             params.setSupportOverlay(true); // overlay only support armeabi-v7a & arm64-v8a
             mCameraHelper.startPusher(params, new AbstractUVCCameraHandler.OnEncodeResultListener() {
                 @Override

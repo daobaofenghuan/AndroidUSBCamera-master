@@ -9,7 +9,7 @@
     tools:ignore="MergeRootFrame">
 
     <RelativeLayout
-android:visibility="invisible"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <androidx.appcompat.widget.Toolbar
@@ -26,12 +26,11 @@ android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/toolbar">
-
-            <!--        <com.serenegiant.usb.widget.UVCCameraTextureView-->
-            <!--            android:id="@+id/camera_view"-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:layout_gravity="center"/>-->
+<!--            <com.serenegiant.usb.widget.UVCCameraTextureView-->
+<!--                        android:id="@+id/camera_view"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"/>-->
         </FrameLayout>
 
         <LinearLayout
@@ -104,7 +103,7 @@ android:visibility="invisible"
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-
+             android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
