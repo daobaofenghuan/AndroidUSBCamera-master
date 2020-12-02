@@ -48,7 +48,7 @@ public class MainActivity extends MyBaseActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
-        button1=findViewById(R.id.ordernubly);
+         button1=findViewById(R.id.ordernubly);
         button2=findViewById(R.id.id_moneryly);
         defaultly=findViewById(R.id.id_rightly1);
         recyclerView=findViewById(R.id.recyclerview);
